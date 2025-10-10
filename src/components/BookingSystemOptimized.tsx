@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { projectId, publicAnonKey } from '../utils/supabase/info';
 
 const AVAILABLE_TIME_SLOTS = ["10:00", "11:00", "14:00", "15:00", "16:00", "17:00"];
@@ -36,7 +36,7 @@ export function BookingSystem() {
 
   // Generate available dates (weekdays only, next 3 months) - Memoized to prevent infinite loops
   const allAvailableDates = React.useMemo(() => {
-    const dates = [];
+    const dates: Date[] = [];
     const today = new Date();
     const maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 3);
@@ -262,7 +262,7 @@ export function BookingSystem() {
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl md:text-4xl">Prendre rendez-vous</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Parlons de votre projet ensemble ! Consultation téléphonique de 30 minutes.
+            Parlons de votre projet ensemble ! Consultation téléphonique de 20 minutes.
           </p>
         </div>
 
@@ -540,7 +540,7 @@ export function BookingSystem() {
                         <strong>Heure :</strong> {selectedTime}
                       </p>
                       <p className="text-sm">
-                        <strong>Durée :</strong> 30 minutes (appel téléphonique)
+                        <strong>Durée :</strong> 20 minutes
                       </p>
                     </div>
                     

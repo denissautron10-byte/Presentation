@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from "./ui/button";
 
 export function Header() {
@@ -19,7 +20,7 @@ export function Header() {
           
           <button 
             onClick={() => scrollToSection('portfolio')}
-            className="text-gray-200 hover:text-white transition-colors text-sm md:text-base font-semibold flex items-center justify-center translate-y-0.5 whitespace-nowrap"
+            className="text-gray-200 hover:text-white transition-colors text-sm md:text-base font-semibold flex items-center justify-center whitespace-nowrap"
           >
             Mes services
           </button>
