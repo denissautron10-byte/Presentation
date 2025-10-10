@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test EmailJS</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <h1>Test EmailJS Configuration</h1>
+    <p>Ouvrez la console du navigateur pour voir les résultats</p>
+    
+    <script type="text/javascript">
+        (function(){
+            // Initialisez EmailJS avec votre clé publique
+            emailjs.init("VOTRE_CLE_PUBLIQUE_ICI");
+            
+            // Testez l'envoi d'un email simple
+            emailjs.send("service_yloo4dm", "contact_form", {
+                to_name: "Denis Sautron",
+                from_name: "Test Portfolio",
+                message: "Test de configuration EmailJS pour le portfolio",
+                reply_to: "test@example.com"
+            })
+            .then(function(response) {
+                console.log('✅ EMAIL ENVOYÉ AVEC SUCCÈS!', response.status, response.text);
+                alert('Email envoyé avec succès !');
+            }, function(error) {
+                console.log('❌ ERREUR EMAIL:', error);
+                alert('Erreur: ' + JSON.stringify(error));
+            });
+        })();
+    </script>
+</body>
+</html>

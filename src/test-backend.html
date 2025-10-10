@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Backend Booking</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .test-section { background: #f5f5f5; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .result { background: #e3f2fd; padding: 15px; margin: 10px 0; border-radius: 5px; white-space: pre-wrap; font-family: monospace; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+        button { background: #1976d2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #1565c0; }
+        .loading { opacity: 0.6; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Test Backend Booking System</h1>
+    
+    <div class="test-section">
+        <h2>1. Test Health Check</h2>
+        <button onclick="testHealth()">Test Health Endpoint</button>
+        <div id="health-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Test EmailJS Config</h2>
+        <button onclick="testEmailConfig()">Test EmailJS Configuration</button>
+        <div id="emailconfig-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Test Send Email</h2>
+        <input type="email" id="test-email" placeholder="Votre email pour le test" style="padding: 8px; margin-right: 10px; width: 300px;">
+        <button onclick="testSendEmail()">Send Test Email</button>
+        <div id="sendemail-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Test Simple Booking</h2>
+        <button onclick="testBooking()">Test Simple Booking</button>
+        <div id="booking-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>5. Test Available Slots</h2>
+        <button onclick="testSlots()">Test Available Slots</button>
+        <div id="slots-result" class="result"></div>
+    </div>
+
+    <script>
+        // Get these from your utils/supabase/info.tsx file
+        const PROJECT_ID = 'ylnrsykmtaicelssaqbd'; // Your correct project ID
+        const PUBLIC_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlsbnJzeWttdGFpY2Vsc3NhcWJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMxNjAwNzYsImV4cCI6MjA0ODczNjA3Nn0.6zEbPq7r1nGQUjGznpU3wafZLcJfEaBLJEAeHBMzfgw'; // Your correct anon key
+
+        async function makeRequest(url, options = {}, resultElementId) {
+            const resultElement = document.getElementById(resultElementId);
+            const button = event.target;
+            
+            resultElement.innerHTML = '⏳ Testing...';
+            button.classList.add('loading');
+            
+            const startTime = Date.now();
+            
+            try {
+                console.log('🌐 Making request to:', url);
+                
+                const response = await fetch(url, {
+                    ...options,
+                    signal: AbortSignal.timeout(10000) // 10 second timeout
+                });
+                
+                const responseTime = Date.now() - startTime;
+                const responseText = await response.text();
+                
+                let result = `Status: ${response.status}\n`;
+                result += `Response time: ${responseTime}ms\n`;
+                result += `Response: ${responseText}`;
+                
+                resultElement.innerHTML = result;
+                resultElement.className = response.ok ? 'result success' : 'result error';
+                
+            } catch (error) {
+                const responseTime = Date.now() - startTime;
+                resultElement.innerHTML = `Error after ${responseTime}ms:\n${error.message}`;
+                resultElement.className = 'result error';
+            } finally {
+                button.classList.remove('loading');
+            }
+        }
+
+        function testHealth() {
+            const url = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/health`;
+            makeRequest(url, {}, 'health-result');
+        }
+
+        function testEmailConfig() {
+            const url = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/test-email-config`;
+            makeRequest(url, {
+                headers: {
+                    'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                }
+            }, 'emailconfig-result');
+        }
+
+        function testSendEmail() {
+            const email = document.getElementById('test-email').value;
+            if (!email) {
+                alert('Veuillez entrer un email');
+                return;
+            }
+
+            const url = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/test-send-email`;
+            makeRequest(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                },
+                body: JSON.stringify({ email })
+            }, 'sendemail-result');
+        }
+
+        function testBooking() {
+            const url = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/book-appointment`;
+            const testData = {
+                name: 'Test User',
+                email: 'test@example.com',
+                phone: '+33123456789',
+                company: 'Test Company',
+                message: 'Test booking',
+                date: '2025-01-15',
+                time: '14:00',
+                clientCurrentHour: new Date().getHours(),
+                clientCurrentMinute: new Date().getMinutes(),
+                clientTimezoneOffset: new Date().getTimezoneOffset()
+            };
+
+            makeRequest(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                },
+                body: JSON.stringify(testData)
+            }, 'booking-result');
+        }
+
+        function testSlots() {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dateStr = tomorrow.toISOString().split('T')[0];
+            
+            const url = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/available-slots?date=${dateStr}`;
+            makeRequest(url, {
+                headers: {
+                    'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                }
+            }, 'slots-result');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 Diagnostic EmailJS - Portfolio Denis</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            max-width: 1200px; 
+            margin: 20px auto; 
+            padding: 20px; 
+            background: #f8f9fa;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #dc3545, #e74c3c);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .diagnostic-section { 
+            background: white; 
+            padding: 25px; 
+            margin: 20px 0; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid #dc3545;
+        }
+        .result { 
+            background: #f8f9fa; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 8px; 
+            white-space: pre-wrap; 
+            font-family: 'Courier New', monospace; 
+            border: 1px solid #dee2e6;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .error { 
+            background: #ffebee; 
+            color: #c62828; 
+            border-color: #f44336;
+        }
+        .success { 
+            background: #e8f5e8; 
+            color: #2e7d32; 
+            border-color: #4caf50;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            border-color: #ffc107;
+        }
+        .info {
+            background: #e3f2fd;
+            color: #1565c0;
+            border-color: #2196f3;
+        }
+        button { 
+            background: #dc3545; 
+            color: white; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            margin: 8px 4px; 
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        button:hover { 
+            background: #c82333; 
+            transform: translateY(-2px);
+        }
+        button:disabled { 
+            background: #6c757d; 
+            cursor: not-allowed; 
+            transform: none;
+        }
+        input, select { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 8px 0; 
+            border: 1px solid #ced4da; 
+            border-radius: 6px; 
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .step-number {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .checklist {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .checklist-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .status-ok { background: #d4edda; color: #155724; }
+        .status-error { background: #f8d7da; color: #721c24; }
+        .status-unknown { background: #e2e3e5; color: #495057; }
+        .config-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+        .config-table th, .config-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #dee2e6;
+        }
+        .config-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        .expandable {
+            cursor: pointer;
+            user-select: none;
+        }
+        .expandable:hover {
+            background: #f8f9fa;
+        }
+        .expanded-content {
+            display: none;
+            margin-top: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 3px solid #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 Diagnostic EmailJS Avancé</h1>
+        <p>Résolution des problèmes d'email - Portfolio Denis Sautron</p>
+        <div style="font-size: 14px; opacity: 0.9; margin-top: 10px;">
+            Service: <strong>service_yloo4dm</strong> | Backend: <strong>ylnrsykmtaicelssaqbd.supabase.co</strong>
+        </div>
+    </div>
+
+    <div class="diagnostic-section">
+        <h2><span class="step-number">1</span>📋 Checklist de Configuration</h2>
+        <div class="checklist">
+            <div class="checklist-item">
+                ✅ <strong>Templates EmailJS créés :</strong>
+                <ul style="margin: 5px 0; padding-left: 20px;">
+                    <li><code>template_booking_admin</code> <span class="status-badge status-unknown">À vérifier</span></li>
+                    <li><code>template_booking_client</code> <span class="status-badge status-unknown">À vérifier</span></li>
+                </ul>
+            </div>
+            <div class="checklist-item">
+                🔑 <strong>Secrets Figma Make configurés :</strong>
+                <ul style="margin: 5px 0; padding-left: 20px;">
+                    <li><code>EMAILJS_PUBLIC_KEY</code> <span class="status-badge status-unknown">À vérifier</span></li>
+                    <li><code>EMAILJS_PRIVATE_KEY</code> <span class="status-badge status-unknown">À vérifier</span></li>
+                    <li><code>EMAILJS_SERVICE_ID</code> <span class="status-badge status-ok">OK (service_yloo4dm)</span></li>
+                </ul>
+            </div>
+            <div class="checklist-item">
+                📧 <strong>Service EmailJS actif :</strong> <span class="status-badge status-unknown">À vérifier</span>
+            </div>
+        </div>
+        <button onclick="checkConfiguration()">🔍 Vérifier Configuration</button>
+        <div id="config-result" class="result"></div>
+    </div>
+
+    <div class="diagnostic-section">
+        <h2><span class="step-number">2</span>🔑 Test des Clés EmailJS</h2>
+        <p>Test direct des clés EmailJS avec l'API :</p>
+        <button onclick="testEmailJSKeys()">🧪 Tester les Clés</button>
+        <div id="keys-result" class="result"></div>
+    </div>
+
+    <div class="diagnostic-section">
+        <h2><span class="step-number">3</span>📡 Test Backend Supabase</h2>
+        <p>Vérification que le backend fonctionne :</p>
+        <button onclick="testBackendHealth()">💓 Test Santé Backend</button>
+        <button onclick="testBackendEmail()">📧 Test Email Backend</button>
+        <div id="backend-result" class="result"></div>
+    </div>
+
+    <div class="diagnostic-section">
+        <h2><span class="step-number">4</span>📧 Test Email Direct</h2>
+        <label>Votre email pour le test :</label>
+        <input type="email" id="direct-test-email" placeholder="votre-email@exemple.com">
+        <button onclick="sendDirectTestEmail()">🚀 Envoyer Email de Test</button>
+        <div id="direct-email-result" class="result"></div>
+    </div>
+
+    <div class="diagnostic-section">
+        <h2><span class="step-number">5</span>🌐 Test EmailJS Direct (Browser)</h2>
+        <p>Test direct depuis le navigateur (bypass backend) :</p>
+        <label>Votre clé publique EmailJS :</label>
+        <input type="text" id="public-key-input" placeholder="user_xxxxxxxxx">
+        <label>Email de test :</label>
+        <input type="email" id="browser-test-email" placeholder="votre-email@exemple.com">
+        <button onclick="testEmailJSBrowser()">🌐 Test Direct Browser</button>
+        <div id="browser-result" class="result"></div>
+    </div>
+
+    <div class="diagnostic-section">
+        <h2><span class="step-number">6</span>📊 Résultats & Recommandations</h2>
+        <div id="recommendations" class="result info">
+            Lancez les tests ci-dessus pour obtenir des recommandations personnalisées...
+        </div>
+    </div>
+
+    <!-- Script EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        // Configuration
+        const PROJECT_ID = 'ylnrsykmtaicelssaqbd';
+        const PUBLIC_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlsbnJzeWttdGFpY2Vsc3NhcWJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMxNjAwNzYsImV4cCI6MjA0ODczNjA3Nn0.6zEbPq7r1nGQUjGznpU3wafZLcJfEaBLJEAeHBMzfgw';
+        const SERVICE_ID = 'service_yloo4dm';
+
+        let testResults = {};
+
+        function updateResult(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = message;
+            element.className = `result ${type}`;
+        }
+
+        function updateRecommendations() {
+            const recommendations = document.getElementById('recommendations');
+            let content = '📊 ANALYSE DES RÉSULTATS :\n\n';
+            
+            if (testResults.config) {
+                content += '✅ Configuration Backend testée\n';
+            }
+            if (testResults.keys) {
+                content += '✅ Clés EmailJS testées\n';
+            }
+            if (testResults.backend) {
+                content += '✅ Backend Supabase testé\n';
+            }
+            if (testResults.directEmail) {
+                content += '✅ Email direct testé\n';
+            }
+            if (testResults.browserTest) {
+                content += '✅ Test browser réalisé\n';
+            }
+
+            content += '\n🔍 PROBLÈMES DÉTECTÉS :\n';
+            
+            if (testResults.configError) {
+                content += '❌ Problème de configuration détecté\n';
+            }
+            if (testResults.keysError) {
+                content += '❌ Problème avec les clés EmailJS\n';
+            }
+            if (testResults.backendError) {
+                content += '❌ Problème backend détecté\n';
+            }
+            if (testResults.emailError) {
+                content += '❌ Problème d\'envoi email détecté\n';
+            }
+
+            content += '\n💡 PROCHAINES ÉTAPES :\n';
+            content += '1. Vérifiez vos templates dans EmailJS dashboard\n';
+            content += '2. Confirmez vos clés publique/privée\n';
+            content += '3. Vérifiez les logs Supabase\n';
+            content += '4. Testez avec un autre email\n';
+
+            recommendations.innerHTML = content;
+            recommendations.className = 'result info';
+        }
+
+        async function checkConfiguration() {
+            updateResult('config-result', '🔍 Vérification de la configuration...', 'info');
+            
+            try {
+                const response = await fetch(`https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/test-email-config`, {
+                    headers: {
+                        'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                    }
+                });
+
+                const data = await response.json();
+                
+                let result = '📊 CONFIGURATION BACKEND :\n\n';
+                result += `Status: ${response.status}\n`;
+                result += `Service ID: ${data.config?.serviceId || 'NON CONFIGURÉ'}\n`;
+                result += `Clé Publique: ${data.config?.publicKeyConfigured ? '✅ CONFIGURÉE' : '❌ MANQUANTE'}\n`;
+                result += `Clé Privée: ${data.config?.privateKeyConfigured ? '✅ CONFIGURÉE' : '❌ MANQUANTE'}\n`;
+                result += `Longueur Clé Publique: ${data.config?.publicKeyLength || 0} caractères\n`;
+                result += `Longueur Clé Privée: ${data.config?.privateKeyLength || 0} caractères\n`;
+                
+                if (response.ok) {
+                    testResults.config = true;
+                    if (!data.config?.publicKeyConfigured || !data.config?.privateKeyConfigured) {
+                        testResults.configError = true;
+                        result += '\n❌ PROBLÈME: Clés EmailJS manquantes !';
+                        updateResult('config-result', result, 'error');
+                    } else {
+                        updateResult('config-result', result, 'success');
+                    }
+                } else {
+                    testResults.configError = true;
+                    updateResult('config-result', result + '\n❌ Erreur de communication backend', 'error');
+                }
+                
+            } catch (error) {
+                testResults.configError = true;
+                updateResult('config-result', `❌ Erreur: ${error.message}`, 'error');
+            }
+            
+            updateRecommendations();
+        }
+
+        async function testEmailJSKeys() {
+            updateResult('keys-result', '🧪 Test direct des clés EmailJS...', 'info');
+            
+            try {
+                // Test avec un appel direct à l'API EmailJS
+                const testPayload = {
+                    service_id: SERVICE_ID,
+                    template_id: 'template_booking_admin', // Test avec le template admin
+                    user_id: 'test_user', // User ID fictif pour le test
+                    template_params: {
+                        client_name: 'Test Diagnostic',
+                        client_email: 'test@example.com',
+                        appointment_date: 'Test Date',
+                        appointment_time: 'Test Time'
+                    }
+                };
+
+                const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testPayload)
+                });
+
+                const responseText = await response.text();
+                
+                let result = '🔑 TEST CLÉS EMAILJS :\n\n';
+                result += `Status: ${response.status}\n`;
+                result += `Réponse: ${responseText}\n\n`;
+                
+                if (response.status === 200) {
+                    result += '✅ Clés EmailJS fonctionnelles\n';
+                    testResults.keys = true;
+                    updateResult('keys-result', result, 'success');
+                } else if (response.status === 400) {
+                    result += '❌ Problème de configuration (template ou clés)\n';
+                    testResults.keysError = true;
+                    updateResult('keys-result', result, 'error');
+                } else {
+                    result += '❌ Erreur EmailJS\n';
+                    testResults.keysError = true;
+                    updateResult('keys-result', result, 'error');
+                }
+                
+            } catch (error) {
+                testResults.keysError = true;
+                updateResult('keys-result', `❌ Erreur réseau: ${error.message}`, 'error');
+            }
+            
+            updateRecommendations();
+        }
+
+        async function testBackendHealth() {
+            updateResult('backend-result', '💓 Test de santé du backend...', 'info');
+            
+            try {
+                const response = await fetch(`https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/health`);
+                const data = await response.json();
+                
+                let result = '💓 SANTÉ BACKEND :\n\n';
+                result += `Status: ${response.status}\n`;
+                result += `Message: ${data.message}\n`;
+                result += `Timestamp: ${data.timestamp}\n`;
+                
+                if (response.ok) {
+                    testResults.backend = true;
+                    updateResult('backend-result', result, 'success');
+                } else {
+                    testResults.backendError = true;
+                    updateResult('backend-result', result + '\n❌ Backend non accessible', 'error');
+                }
+                
+            } catch (error) {
+                testResults.backendError = true;
+                updateResult('backend-result', `❌ Erreur backend: ${error.message}`, 'error');
+            }
+            
+            updateRecommendations();
+        }
+
+        async function testBackendEmail() {
+            const currentResult = document.getElementById('backend-result').innerHTML;
+            updateResult('backend-result', currentResult + '\n\n📧 Test email backend...', 'info');
+            
+            try {
+                const response = await fetch(`https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/test-send-email`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                    },
+                    body: JSON.stringify({ 
+                        email: 'diagnostic@test.com' 
+                    })
+                });
+
+                const data = await response.json();
+                
+                let result = currentResult + '\n\n📧 TEST EMAIL BACKEND :\n\n';
+                result += `Status: ${response.status}\n`;
+                result += `Success: ${data.success}\n`;
+                result += `Message: ${data.message || data.error}\n`;
+                
+                if (data.success) {
+                    result += '\n✅ Backend email fonctionnel';
+                    updateResult('backend-result', result, 'success');
+                } else {
+                    testResults.emailError = true;
+                    result += '\n❌ Problème envoi email backend';
+                    updateResult('backend-result', result, 'error');
+                }
+                
+            } catch (error) {
+                testResults.emailError = true;
+                const errorResult = currentResult + `\n\n❌ Erreur test email: ${error.message}`;
+                updateResult('backend-result', errorResult, 'error');
+            }
+            
+            updateRecommendations();
+        }
+
+        async function sendDirectTestEmail() {
+            const email = document.getElementById('direct-test-email').value;
+            if (!email) {
+                updateResult('direct-email-result', '❌ Veuillez entrer un email', 'error');
+                return;
+            }
+
+            updateResult('direct-email-result', '📧 Envoi email de test via backend...', 'info');
+            
+            try {
+                const response = await fetch(`https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/test-send-email`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+                
+                let result = '📧 TEST EMAIL DIRECT :\n\n';
+                result += `Email cible: ${email}\n`;
+                result += `Status: ${response.status}\n`;
+                result += `Success: ${data.success}\n`;
+                result += `Message: ${data.message || data.error}\n`;
+                
+                if (data.success) {
+                    result += '\n✅ Email envoyé ! Vérifiez votre boîte mail.';
+                    testResults.directEmail = true;
+                    updateResult('direct-email-result', result, 'success');
+                } else {
+                    testResults.emailError = true;
+                    result += '\n❌ Échec envoi email';
+                    if (data.details) {
+                        result += `\nDétails: ${data.details}`;
+                    }
+                    updateResult('direct-email-result', result, 'error');
+                }
+                
+            } catch (error) {
+                testResults.emailError = true;
+                updateResult('direct-email-result', `❌ Erreur: ${error.message}`, 'error');
+            }
+            
+            updateRecommendations();
+        }
+
+        async function testEmailJSBrowser() {
+            const publicKey = document.getElementById('public-key-input').value;
+            const email = document.getElementById('browser-test-email').value;
+            
+            if (!publicKey || !email) {
+                updateResult('browser-result', '❌ Veuillez remplir tous les champs', 'error');
+                return;
+            }
+
+            updateResult('browser-result', '🌐 Test direct EmailJS depuis le navigateur...', 'info');
+            
+            try {
+                // Initialiser EmailJS
+                emailjs.init(publicKey);
+                
+                // Envoyer un email de test
+                const result = await emailjs.send(SERVICE_ID, 'template_booking_admin', {
+                    client_name: 'Test Browser Direct',
+                    client_email: email,
+                    client_phone: '+262123456789',
+                    client_company: 'Test Diagnostic',
+                    client_message: 'Test direct depuis le navigateur',
+                    appointment_date: 'Test Date',
+                    appointment_time: 'Test Time',
+                    appointment_id: 'test-browser-123',
+                    created_date: new Date().toLocaleString('fr-FR')
+                });
+                
+                let resultText = '🌐 TEST BROWSER DIRECT :\n\n';
+                resultText += `Email cible: ${email}\n`;
+                resultText += `Status: ${result.status}\n`;
+                resultText += `Text: ${result.text}\n`;
+                resultText += '\n✅ Email envoyé directement ! Vérifiez votre boîte mail.';
+                
+                testResults.browserTest = true;
+                updateResult('browser-result', resultText, 'success');
+                
+            } catch (error) {
+                testResults.emailError = true;
+                let errorText = '🌐 TEST BROWSER DIRECT :\n\n';
+                errorText += `Erreur: ${error.message || error}\n`;
+                errorText += `Type: ${error.name || 'Unknown'}\n`;
+                
+                if (error.message && error.message.includes('template')) {
+                    errorText += '\n❌ PROBLÈME: Template non trouvé !';
+                } else if (error.message && error.message.includes('user')) {
+                    errorText += '\n❌ PROBLÈME: Clé publique invalide !';
+                } else {
+                    errorText += '\n❌ Erreur EmailJS';
+                }
+                
+                updateResult('browser-result', errorText, 'error');
+            }
+            
+            updateRecommendations();
+        }
+
+        // Initialisation
+        window.onload = function() {
+            // Remplir automatiquement l'email si possible
+            const testEmails = document.querySelectorAll('input[type="email"]');
+            testEmails.forEach(input => {
+                if (input.value === '') {
+                    input.value = 'votre-email@gmail.com'; // Changez par votre email
+                }
+            });
+        };
+    </script>
+</body>
+</html>

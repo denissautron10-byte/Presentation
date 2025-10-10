@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Final EmailJS - Portfolio Denis Sautron</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 1000px; 
+            margin: 20px auto; 
+            padding: 20px; 
+            background: #f8f9fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #030213, #1e1e2e);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section { 
+            background: white; 
+            padding: 25px; 
+            margin: 20px 0; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid #030213;
+        }
+        .template-info {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+        .template-code {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+        .result { 
+            background: #f5f5f5; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 8px; 
+            white-space: pre-wrap; 
+            font-family: monospace; 
+            border: 1px solid #ddd;
+        }
+        .error { 
+            background: #ffebee; 
+            color: #c62828; 
+            border-color: #f44336;
+        }
+        .success { 
+            background: #e8f5e8; 
+            color: #2e7d32; 
+            border-color: #4caf50;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            border-color: #ffc107;
+        }
+        button { 
+            background: #030213; 
+            color: white; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            margin: 8px; 
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        button:hover { 
+            background: #1e1e2e; 
+            transform: translateY(-2px);
+        }
+        button:disabled { 
+            background: #ccc; 
+            cursor: not-allowed; 
+            transform: none;
+        }
+        .loading { 
+            opacity: 0.6; 
+            pointer-events: none; 
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .status-indicator {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .status-ok { background: #d4edda; color: #155724; }
+        .status-error { background: #f8d7da; color: #721c24; }
+        .step-number {
+            display: inline-block;
+            background: #030213;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Test Final EmailJS</h1>
+        <p>Système de réservation Portfolio Denis Sautron</p>
+        <p>Service ID: <strong>service_yloo4dm</strong></p>
+    </div>
+
+    <div class="test-section">
+        <h2><span class="step-number">1</span>📋 Configuration des Templates EmailJS</h2>
+        <p>Avant de tester, vous devez créer <strong>2 templates</strong> dans votre tableau de bord EmailJS :</p>
+        
+        <div class="template-info">
+            <h3>🔷 Template 1 : <code>template_booking_admin</code> (Pour vous)</h3>
+            <p><strong>Objet :</strong> <code>Nouveau rendez-vous - {{client_name}} le {{appointment_date}}</code></p>
+            <p><strong>Contenu HTML :</strong></p>
+            <div class="template-code"><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Nouveau rendez-vous</title>
+</head>
+<body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background: linear-gradient(135deg, #030213, #1e1e2e); color: white; padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 30px;">
+        <h1 style="margin: 0; font-size: 24px;">📅 Nouveau Rendez-vous</h1>
+        <p style="margin: 10px 0 0 0; opacity: 0.9;">Portfolio Denis Sautron</p>
+    </div>
+
+    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0;">
+        <h2 style="color: #030213; margin-top: 0;">👤 Informations Client</h2>
+        <p><strong>Nom :</strong> {{client_name}}</p>
+        <p><strong>Email :</strong> {{client_email}}</p>
+        <p><strong>Téléphone :</strong> {{client_phone}}</p>
+        <p><strong>Entreprise :</strong> {{client_company}}</p>
+        <p><strong>Message :</strong> {{client_message}}</p>
+    </div>
+
+    <div style="background: #e3f2fd; padding: 25px; border-radius: 12px; margin: 20px 0;">
+        <h2 style="color: #030213; margin-top: 0;">📅 Détails du Rendez-vous</h2>
+        <p><strong>Date :</strong> {{appointment_date}}</p>
+        <p><strong>Heure :</strong> {{appointment_time}}</p>
+        <p><strong>ID :</strong> {{appointment_id}}</p>
+        <p><strong>Créé le :</strong> {{created_date}}</p>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0;">
+        <p style="color: #666;">N'oubliez pas d'ajouter ce rendez-vous à votre Google Calendar !</p>
+    </div>
+
+    <div style="text-align: center; padding: 20px; background: #f0f0f0; border-radius: 8px; margin-top: 30px;">
+        <p style="margin: 0; color: #666; font-size: 14px;">
+            Denis Sautron - Concept Artist & Créateur Whalys<br>
+            Portfolio : <a href="https://denis-sautron.com">denis-sautron.com</a>
+        </p>
+    </div>
+</body>
+</html></div>
+        </div>
+
+        <div class="template-info">
+            <h3>🔷 Template 2 : <code>template_booking_client</code> (Pour le client)</h3>
+            <p><strong>Objet :</strong> <code>Confirmation de votre rendez-vous - {{appointment_date}} à {{appointment_time}}</code></p>
+            <p><strong>Contenu HTML :</strong></p>
+            <div class="template-code"><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Confirmation de rendez-vous</title>
+</head>
+<body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background: linear-gradient(135deg, #030213, #1e1e2e); color: white; padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 30px;">
+        <h1 style="margin: 0; font-size: 24px;">✅ Rendez-vous Confirmé</h1>
+        <p style="margin: 10px 0 0 0; opacity: 0.9;">Denis Sautron - Concept Artist</p>
+    </div>
+
+    <div style="background: #e8f5e8; padding: 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #4caf50;">
+        <h2 style="color: #030213; margin-top: 0;">Bonjour {{client_name}} !</h2>
+        <p>Votre rendez-vous téléphonique a été confirmé avec succès. Voici les détails :</p>
+    </div>
+
+    <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0;">
+        <h3 style="color: #030213; margin-top: 0;">📅 Détails du Rendez-vous</h3>
+        <p><strong>📅 Date :</strong> {{appointment_date}}</p>
+        <p><strong>⏰ Heure :</strong> {{appointment_time}}</p>
+        <p><strong>📞 Téléphone :</strong> {{client_phone}}</p>
+        <p><strong>🏢 Entreprise :</strong> {{client_company}}</p>
+    </div>
+
+    <div style="background: #fff3cd; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
+        <h3 style="color: #856404; margin-top: 0;">📞 Modalités de l'appel</h3>
+        <p style="color: #856404; margin: 0;">C'est Denis qui vous appellera au numéro <strong>{{client_phone}}</strong> à l'heure convenue. Assurez-vous d'être disponible !</p>
+    </div>
+
+    <div style="background: #f0f0f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #030213; margin-top: 0;">💬 Votre message</h3>
+        <p style="margin: 0; font-style: italic;">"{{client_message}}"</p>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0;">
+        <a href="{{cancel_url}}" style="display: inline-block; background: #dc3545; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
+            ❌ Annuler le rendez-vous
+        </a>
+    </div>
+
+    <div style="text-align: center; padding: 20px; background: #f0f0f0; border-radius: 8px; margin-top: 30px;">
+        <p style="margin: 0; color: #666; font-size: 14px;">
+            Denis Sautron - Concept Artist & Créateur de l'application Whalys<br>
+            Portfolio : <a href="https://denis-sautron.com">denis-sautron.com</a><br>
+            <em>Spécialisé en environnements pour jeux vidéo</em>
+        </p>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <p style="color: #999; font-size: 12px;">
+            ID du rendez-vous : {{appointment_id}} | Créé le {{created_date}}
+        </p>
+    </div>
+</body>
+</html></div>
+        </div>
+
+        <div class="warning">
+            <p><strong>⚠️ Important :</strong> Les noms des templates doivent être <strong>exactement</strong> :</p>
+            <ul>
+                <li><code>template_booking_admin</code></li>
+                <li><code>template_booking_client</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2><span class="step-number">2</span>🔍 Test de Configuration</h2>
+        <button onclick="testConfig()">Vérifier la Configuration</button>
+        <div id="config-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2><span class="step-number">3</span>📧 Test d'Envoi d'Email</h2>
+        <label>Email de test :</label>
+        <input type="email" id="test-email" placeholder="votre-email@exemple.com" value="">
+        <button onclick="testEmail()">Envoyer Email de Test</button>
+        <div id="email-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2><span class="step-number">4</span>🎯 Test de Réservation Complète</h2>
+        <button onclick="testFullBooking()">Test Réservation Complète</button>
+        <div id="booking-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2><span class="step-number">5</span>📅 Test des Créneaux Disponibles</h2>
+        <button onclick="testAvailableSlots()">Test Créneaux Demain</button>
+        <div id="slots-result" class="result"></div>
+    </div>
+
+    <script>
+        // Configuration depuis votre système
+        const PROJECT_ID = 'ylnrsykmtaicelssaqbd';
+        const PUBLIC_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlsbnJzeWttdGFpY2Vsc3NhcWJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMxNjAwNzYsImV4cCI6MjA0ODczNjA3Nn0.6zEbPq7r1nGQUjGznpU3wafZLcJfEaBLJEAeHBMzfgw';
+
+        async function makeRequest(url, options = {}, resultElementId) {
+            const resultElement = document.getElementById(resultElementId);
+            const button = event.target;
+            
+            resultElement.innerHTML = '⏳ Test en cours...';
+            button.disabled = true;
+            
+            const startTime = Date.now();
+            
+            try {
+                console.log('🌐 Request:', url);
+                
+                const response = await fetch(url, {
+                    ...options,
+                    signal: AbortSignal.timeout(30000) // 30 secondes
+                });
+                
+                const responseTime = Date.now() - startTime;
+                const responseText = await response.text();
+                
+                let result = `Status: ${response.status}\n`;
+                result += `Temps: ${responseTime}ms\n`;
+                result += `Réponse: ${responseText}`;
+                
+                resultElement.innerHTML = result;
+                resultElement.className = response.ok ? 'result success' : 'result error';
+                
+            } catch (error) {
+                const responseTime = Date.now() - startTime;
+                resultElement.innerHTML = `❌ Erreur après ${responseTime}ms:\n${error.message}`;
+                resultElement.className = 'result error';
+            } finally {
+                button.disabled = false;
+            }
+        }
+
+        function testConfig() {
+            const url = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/test-email-config`;
+            makeRequest(url, {
+                headers: {
+                    'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                }
+            }, 'config-result');
+        }
+
+        function testEmail() {
+            const email = document.getElementById('test-email').value;
+            if (!email) {
+                alert('Veuillez entrer un email de test');
+                return;
+            }
+
+            const url = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/test-send-email`;
+            makeRequest(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                },
+                body: JSON.stringify({ email })
+            }, 'email-result');
+        }
+
+        function testFullBooking() {
+            // Date demain pour éviter les blocages
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dateStr = tomorrow.toISOString().split('T')[0];
+
+            const url = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/book-appointment`;
+            const testData = {
+                name: 'Test Portfolio',
+                email: 'test@example.com',
+                phone: '+262123456789',
+                company: 'Test Company',
+                message: 'Test complet du système de réservation',
+                date: dateStr,
+                time: '14:00',
+                clientCurrentHour: new Date().getHours(),
+                clientCurrentMinute: new Date().getMinutes(),
+                clientTimezoneOffset: new Date().getTimezoneOffset()
+            };
+
+            makeRequest(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                },
+                body: JSON.stringify(testData)
+            }, 'booking-result');
+        }
+
+        function testAvailableSlots() {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dateStr = tomorrow.toISOString().split('T')[0];
+            
+            const url = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-a1a504da/available-slots?date=${dateStr}&currentHour=${new Date().getHours()}&currentMinute=${new Date().getMinutes()}&timezoneOffset=${new Date().getTimezoneOffset()}`;
+            makeRequest(url, {
+                headers: {
+                    'Authorization': `Bearer ${PUBLIC_ANON_KEY}`
+                }
+            }, 'slots-result');
+        }
+
+        // Remplir automatiquement l'email de test si possible
+        window.onload = function() {
+            const testEmailInput = document.getElementById('test-email');
+            // Vous pouvez changer cet email par le vôtre pour les tests
+            testEmailInput.value = 'votre-email@gmail.com';
+        };
+    </script>
+</body>
+</html>
