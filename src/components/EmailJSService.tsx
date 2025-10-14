@@ -1,4 +1,4 @@
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { projectId, publicAnonKey } from '../utils/supabase/info';
 
 // Interface pour les données de réservation
@@ -223,6 +223,7 @@ export const sendBookingConfirmationEmails = async (booking: BookingData): Promi
     
     // 2. Envoyer l'email de confirmation au client
     console.log('📧 Envoi email client...');
+    console.log(`✉️ L'email de confirmation sera envoyé à : ${booking.email}`);
     const clientParams = {
       ...commonParams,
       cancel_url: cancelUrl
