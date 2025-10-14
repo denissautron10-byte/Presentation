@@ -233,9 +233,6 @@ export const sendBookingConfirmationEmails = async (booking: BookingData): Promi
     
     console.log('🎉 TOUS LES EMAILS ENVOYÉS AVEC SUCCÈS');
     
-    // Toast de succès
-    toast.success('📧 Emails de confirmation envoyés !');
-    
   } catch (error) {
     console.error('❌ Erreur lors de l\'envoi des emails:', error);
     
