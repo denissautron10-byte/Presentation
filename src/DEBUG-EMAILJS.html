@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Debug EmailJS</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .big-button {
+            display: block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 40px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .big-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        
+        .steps {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        
+        .steps h3 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .step-num {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            color: #856404;
+        }
+        
+        .note strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="icon">🔧</div>
+            <h1>Debug EmailJS</h1>
+            <p class="subtitle">
+                Vous avez configuré vos clés EmailJS mais l'envoi d'email ne fonctionne toujours pas ?<br>
+                <strong>Utilisons l'outil de diagnostic automatique !</strong>
+            </p>
+            
+            <a href="/diagnostic-emailjs-complet.html" class="big-button">
+                🚀 Lancer le Diagnostic Automatique
+            </a>
+            
+            <div class="steps">
+                <h3>📋 Ce que le diagnostic va vérifier :</h3>
+                
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <strong>Chargement EmailJS :</strong> La librairie est-elle bien chargée ?
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <strong>Initialisation :</strong> EmailJS s'initialise-t-il avec vos clés ?
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <strong>Validation des clés :</strong> Vos clés sont-elles valides ?
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-text">
+                        <strong>Template Admin :</strong> Le template <code>template_booking_admin</code> existe-t-il ?
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <div class="step-text">
+                        <strong>Template Client :</strong> Le template <code>template_booking_client</code> existe-t-il ?
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-num">6</div>
+                    <div class="step-text">
+                        <strong>Envoi réel :</strong> Test d'envoi d'un email complet
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note">
+                <strong>💡 Avant de lancer le diagnostic :</strong>
+                Ayez vos clés EmailJS à portée de main :
+                <ul style="margin-top: 10px; line-height: 1.8;">
+                    <li><strong>Public Key</strong> → https://dashboard.emailjs.com/admin/account</li>
+                    <li><strong>Service ID</strong> → https://dashboard.emailjs.com/admin/integration</li>
+                </ul>
+            </div>
+            
+            <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #eee;">
+                <p style="color: #666; margin-bottom: 15px;">Autres outils utiles :</p>
+                <a href="/CHECKLIST-EMAILJS.md" style="color: #667eea; text-decoration: none; display: inline-block; margin: 5px 10px;">
+                    📋 Checklist complète
+                </a>
+                |
+                <a href="/test-simple.html" style="color: #667eea; text-decoration: none; display: inline-block; margin: 5px 10px;">
+                    🧪 Test simple
+                </a>
+                |
+                <a href="https://dashboard.emailjs.com" target="_blank" style="color: #667eea; text-decoration: none; display: inline-block; margin: 5px 10px;">
+                    🌐 EmailJS Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

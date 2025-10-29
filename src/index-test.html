@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Centre de Test EmailJS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        
+        .alert {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border-left: 6px solid #28a745;
+        }
+        
+        .alert h2 {
+            color: #28a745;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .alert p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .card h3 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+            text-align: center;
+        }
+        
+        .card p {
+            color: #666;
+            line-height: 1.5;
+            font-size: 0.95em;
+            text-align: center;
+        }
+        
+        .card-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .recommended {
+            position: relative;
+            border: 3px solid #28a745;
+        }
+        
+        .recommended::before {
+            content: '⭐ RECOMMANDÉ';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .info-box h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-box li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-box li::before {
+            content: '✅ ';
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-online {
+            background: #28a745;
+            box-shadow: 0 0 8px #28a745;
+        }
+        
+        .status-offline {
+            background: #dc3545;
+            box-shadow: 0 0 8px #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Centre de Test EmailJS</h1>
+        <p class="subtitle">Testez votre configuration EmailJS sans dépendance à Supabase</p>
+        
+        <div class="alert" style="border-left-color: #dc3545; background: #f8d7da;">
+            <h2 style="color: #721c24;">🚨 L'envoi d'email ne fonctionne pas ?</h2>
+            <p style="color: #721c24;">
+                <strong>Utilisez l'outil de diagnostic automatique pour identifier le problème exact.</strong><br><br>
+                Le diagnostic testera vos clés, vos templates et identifiera précisément ce qui ne fonctionne pas.
+            </p>
+        </div>
+        
+        <div class="grid">
+            <a href="/DEBUG-EMAILJS.html" class="card recommended">
+                <div class="card-icon">🔧</div>
+                <h3>Diagnostic Automatique</h3>
+                <p>Outil qui identifie automatiquement pourquoi l'envoi d'email ne fonctionne pas.</p>
+                <div style="text-align: center;">
+                    <span class="card-badge" style="background: #dc3545;">🚨 COMMENCEZ ICI</span>
+                </div>
+            </a>
+            
+            <a href="/GUIDE-RECUPERATION-CLES-EMAILJS.html" class="card">
+                <div class="card-icon">🔑</div>
+                <h3>Guide Récupération Clés</h3>
+                <p>Guide complet pour récupérer vos vraies clés EmailJS et créer vos templates.</p>
+                <div style="text-align: center;">
+                    <span class="card-badge" style="background: #667eea;">📖 Guide</span>
+                </div>
+            </a>
+            
+            <a href="/test-simple.html" class="card">
+                <div class="card-icon">🚀</div>
+                <h3>Test Rapide</h3>
+                <p>Test en 1 clic pour vérifier que l'envoi d'emails fonctionne (après configuration).</p>
+                <div style="text-align: center;">
+                    <span class="card-badge">⏱️ 1 minute</span>
+                </div>
+            </a>
+            
+            <a href="/test-emailjs-standalone.html" class="card">
+                <div class="card-icon">🔍</div>
+                <h3>Test Détaillé</h3>
+                <p>Diagnostic en 3 étapes pour identifier l'origine des problèmes.</p>
+                <div style="text-align: center;">
+                    <span class="card-badge">⏱️ 3 minutes</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="info-box">
+            <h3>📊 État des Services</h3>
+            <ul>
+                <li>
+                    <span class="status-indicator status-online"></span>
+                    <strong>EmailJS :</strong> Fonctionnel (indépendant de Supabase)
+                </li>
+                <li>
+                    <span class="status-indicator status-offline"></span>
+                    <strong>Backend Supabase :</strong> Indisponible (quota d'egress dépassé)
+                </li>
+                <li>
+                    <span class="status-indicator status-online"></span>
+                    <strong>Frontend React :</strong> Fonctionnel
+                </li>
+                <li>
+                    <span class="status-indicator status-online"></span>
+                    <strong>Système de réservation :</strong> Fonctionnel
+                </li>
+            </ul>
+        </div>
+        
+        <div class="info-box" style="margin-top: 30px;">
+            <h3>🔧 Configuration Actuelle</h3>
+            <ul>
+                <li><strong>Public Key :</strong> UYr2wdCd6_5qMv9XW</li>
+                <li><strong>Service ID :</strong> service_yloo4dm</li>
+                <li><strong>Template Admin :</strong> template_booking_admin</li>
+                <li><strong>Template Client :</strong> template_booking_client</li>
+            </ul>
+            <p style="margin-top: 15px; color: #856404; background: #fff3cd; padding: 12px; border-radius: 6px; font-size: 0.9em;">
+                ⚠️ <strong>Vérifiez que ces templates existent sur votre dashboard EmailJS !</strong><br>
+                👉 <a href="https://dashboard.emailjs.com/admin/templates" target="_blank" style="color: #667eea;">Gérer mes templates</a>
+            </p>
+        </div>
+        
+        <div class="info-box" style="margin-top: 30px;">
+            <h3>📚 Documentation</h3>
+            <ul>
+                <li><strong>README-FIX-EMAILJS.md :</strong> Guide complet de résolution</li>
+                <li><strong>SOLUTION-QUOTA-SUPABASE.md :</strong> Explication technique détaillée</li>
+                <li><strong>EmailJS Dashboard :</strong> <a href="https://dashboard.emailjs.com" target="_blank" style="color: #667eea;">dashboard.emailjs.com</a></li>
+                <li><strong>Supabase Dashboard :</strong> <a href="https://supabase.com/dashboard" target="_blank" style="color: #667eea;">supabase.com/dashboard</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
