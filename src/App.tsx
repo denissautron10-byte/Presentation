@@ -5,7 +5,6 @@ import { Portfolio } from "./components/Portfolio";
 import { PricingSection } from "./components/PricingSection";
 import { BookingSystem } from "./components/BookingSystem";
 import { Footer } from "./components/Footer";
-import { EmailJSDiagnostic } from "./components/EmailJSDiagnostic";
 
 export default function App() {
   return (
@@ -17,7 +16,6 @@ export default function App() {
       <BookingSystem />
       <Footer />
       <Toaster />
-      <EmailJSDiagnostic />
     </div>
   );
 }
