@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button } from "./ui/button";
 import { ExternalLink } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
