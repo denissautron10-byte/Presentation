@@ -1,3 +1,4 @@
+import React from 'react';
 import { Toaster } from "./components/ui/sonner";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
