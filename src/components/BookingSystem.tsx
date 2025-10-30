@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { projectId, publicAnonKey } from '../utils/supabase/info';
 import { sendBookingConfirmationEmails, getEmailJSConfig } from './EmailJSService';
 
@@ -57,7 +57,7 @@ export function BookingSystem() {
 
   // Generate available dates (weekdays only, next 3 months) - Memoized to prevent infinite loops
   const allAvailableDates = React.useMemo(() => {
-    const dates = [];
+    const dates: Date[] = [];
     const today = new Date();
     const maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 3);
@@ -593,7 +593,7 @@ export function BookingSystem() {
                         <strong>Heure :</strong> {selectedTime}
                       </p>
                       <p className="text-sm">
-                        <strong>Durée :</strong> 30 minutes (appel téléphonique)
+                        <strong>Durée :</strong> 20 minutes (appel téléphonique)
                       </p>
                     </div>
                     
