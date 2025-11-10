@@ -131,21 +131,21 @@ export function BookingSystem() {
         setAvailableSlots(data.availableSlots || []);
         setIsOnline(true);
       } else {
-        console.error('Erreur serveur:', response.status);
+        console.error('feedback serveur:', response.status);
         setIsOnline(false);
         setAvailableSlots(AVAILABLE_TIME_SLOTS); // Fallback mode
         toast.error("Mode hors ligne activé - créneaux approximatifs");
       }
     } catch (error) {
       clearTimeout(timeoutId);
-      console.error('Erreur réseau:', error);
+      console.error('feedback réseau:', error);
       setIsOnline(false);
       setAvailableSlots(AVAILABLE_TIME_SLOTS); // Fallback mode
       
       if (error.name === 'AbortError') {
         toast.error("Connexion lente - mode hors ligne activé");
       } else {
-        toast.error("Erreur de connexion - mode hors ligne activé");
+        toast.error("feedback de connexion - mode hors ligne activé");
       }
     } finally {
       setLoading(false);
@@ -221,9 +221,9 @@ export function BookingSystem() {
         setSelectedTime("");
         setAvailableSlots([]);
       } else {
-        const errorData = await response.json().catch(() => ({ error: "Erreur de réponse serveur" }));
+        const errorData = await response.json().catch(() => ({ error: "feedback de réponse serveur" }));
         console.error('❌ Booking failed:', errorData);
-        toast.error(errorData.error || `Erreur serveur (${response.status})`);
+        toast.error(errorData.error || `erreur serveur (${response.status})`);
       }
     } catch (error) {
       clearTimeout(timeoutId);
@@ -232,7 +232,7 @@ export function BookingSystem() {
       if (error.name === 'AbortError') {
         toast.error("La requête a pris trop de temps. Veuillez réessayer ou contacter par email.");
       } else {
-        toast.error(`Erreur de connexion. Contactez-nous par email : ${error.message || 'Erreur inconnue'}`);
+        toast.error(`erreur de connexion. Contactez-nous par email : ${error.message || 'feedback inconnue'}`);
       }
     } finally {
       setSubmitting(false);
