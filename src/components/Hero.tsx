@@ -1,6 +1,5 @@
-import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import profilePhoto from 'figma:asset/6a84f0f2afd452934969c6a14d2799419d7a0822.png';
+import profilePhoto from '../assets/imageV2.png';
 
 export function Hero() {
   const scrollToBooking = () => {
@@ -25,64 +24,26 @@ export function Hero() {
   };
 
   return (
-    <section id="about" className="pt-20 pb-16 px-6 bg-slate-900">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center justify-center place-items-center">
-          <div className="relative">
-            <div className="relative w-full max-w-md ml-0 md:ml-[-2rem] mr-auto">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-muted relative">
-                <ImageWithFallback 
-                  src={profilePhoto}
-                  alt="Photo de profil professionnelle"
-                  className="w-full h-full object-cover object-[55%_center]"
-                />
-              </div>
-              
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div>
-            </div>
+    <section id="about" className="min-h-screen px-6 bg-slate-900 scroll-mt-20 flex items-center">
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Text on the left */}
+          <div className="space-y-6 text-left">
+            <h2 className="text-3xl md:text-4xl tracking-tight text-white">
+              <span className="block">À propos</span>
+            </h2>
+            <p className="text-xl text-gray-300 leading-relaxed">
+              Mon expérience de créateur full stack IA me confère une maîtrise complète du cycle de vie du produit. Je ne me contente pas de designer : je construis. Je définis la direction artistique et l'expérience utilisateur en m'appuyant sur mon expertise visuelle et technique. Mon objectif est de bâtir un modèle de vie indépendante autour de la création.
+            </p>
           </div>
 
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <Badge variant="secondary" className="w-fit">
-                Disponible pour nouveaux projets
-              </Badge>
-              <h1 className="text-4xl md:text-5xl tracking-tight text-white">
-                <span className="block">Sautron Denis</span>
-              </h1>
-              <p className="text-xl text-gray-300 leading-relaxed">
-                Concept artist spécialisé en environnements 
-                et créateur de Whalys, application web pour les agences de design.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-4">
-                
-                
-              </div>
-            </div>
-
-            <div className="pt-8 border-t border-gray-600">
-              {/* Section Mes Services */}
-              <div className="grid grid-cols-3 gap-8 mb-6">
-                <div>
-                  <h3 className="text-2xl text-white">30+</h3>
-                  <p className="text-gray-300">Concept arts créés</p>
-                </div>
-                <div>
-                  <h3 className="text-2xl text-white">3</h3>
-                  <p className="text-gray-300">Années d'expérience</p>
-                </div>
-                <div>
-                  <h3 className="text-2xl text-white">1</h3>
-                  <p className="text-gray-300">App lancée (Whalys)</p>
-                </div>
-              </div>
-
-
-            </div>
+          {/* Image on the right */}
+          <div className="flex justify-center md:pl-20">
+            <ImageWithFallback 
+              src={profilePhoto}
+              alt="Photo de Denis Sautron" 
+              className="w-full max-w-[280px] rounded-2xl shadow-xl"
+            />
           </div>
         </div>
       </div>

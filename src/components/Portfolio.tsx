@@ -3,21 +3,11 @@ import { Button } from "./ui/button";
 import { ExternalLink } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
-import conceptArtImage from 'figma:asset/64be51489d0c3f397b7e746f5422db8a195997b7.png';
 import newConceptArtImage from 'figma:asset/4334886f91c9bd88b3a661ee999b4d4cc5f67719.png';
 import digitalProductImage from 'figma:asset/7c3cbb0373bec945b93a24b1ca31bf243446c12c.png';
-import whalysImage from 'figma:asset/9af14d2dee5c6f0ebb897227793429fb6253865f.png';
 import newWhalysImage from 'figma:asset/5ef386c671094d4b166c4eeada614d21da6745da.png';
 
 const services = [
-  {
-    id: 1,
-    title: "Concept Art - Environnements",
-    description: "Création de concept arts d'environnements, du design de niveaux aux décors immersifs et atmosphériques.",
-    image: newConceptArtImage,
-    demoUrl: "https://drive.google.com/file/d/12QTC2gI598Oqqk57vNSOG0SZ5KcaK6ig/view?usp=sharing",
-    buttonText: "Portfolio"
-  },
   {
     id: 2,
     title: "L'Application Whalys",
@@ -26,6 +16,14 @@ const services = [
     tutorialUrl: "https://drive.google.com/file/d/1fNcSrpc7sNSVwtkvCLdW7o_Dc-54IZOd/view?usp=sharing",
     demoUrl: "https://docs.google.com/forms/d/e/1FAIpQLSce0Iotxs5zlQhRLLn5bnsLIj5apGbHrpkOGg8uj-9zCXp6Sg/viewform?usp=header",
     buttonText: "Démo"
+  },
+  {
+    id: 1,
+    title: "Concept Art - Environnements",
+    description: "Création de concept arts d'environnements, du design de niveaux aux décors immersifs et atmosphériques.",
+    image: newConceptArtImage,
+    demoUrl: "https://drive.google.com/file/d/12QTC2gI598Oqqk57vNSOG0SZ5KcaK6ig/view?usp=sharing",
+    buttonText: "Portfolio"
   },
   {
     id: 3,
@@ -39,18 +37,18 @@ const services = [
 
 export function Portfolio() {
   return (
-    <section id="portfolio" className="pt-20 pb-0 overflow-x-hidden">
+    <section id="portfolio" className="pt-20 pb-0 overflow-x-hidden scroll-mt-20">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl md:text-4xl">Mes Services</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Concept art, application et produits digitaux.
+            Application, concept art et produits digitaux.
           </p>
         </div>
       </div>
 
       <div className="space-y-0 overflow-x-hidden">
-        {services.map((service, index) => (
+        {services.map((service) => (
           <div key={service.id} className="bg-black text-white overflow-hidden" style={{ minHeight: '120vh' }}>
             <div className="grid md:grid-cols-2 overflow-hidden" style={{ height: '120vh' }}>
               {/* Image à gauche - moitié de page */}

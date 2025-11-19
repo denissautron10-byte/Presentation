@@ -308,7 +308,7 @@ export function BookingSystem() {
   };
 
   return (
-    <section id="booking" className="py-20 modern-booking-gradient">
+    <section id="booking" className="py-20 modern-booking-gradient scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl md:text-4xl text-center">Prendre rendez-vous</h2>

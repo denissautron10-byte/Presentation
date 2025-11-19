@@ -55,7 +55,7 @@ export function BookingSystem() {
 
   // Filter dates for current month view
   const getMonthDates = useCallback((month: Date) => {
-    return allAvailableDates.filter(date => 
+    return allAvailableDates.filter((date: Date) => 
       date.getMonth() === month.getMonth() && 
       date.getFullYear() === month.getFullYear()
     );
@@ -136,7 +136,7 @@ export function BookingSystem() {
         setAvailableSlots(AVAILABLE_TIME_SLOTS); // Fallback mode
         toast.error("Mode hors ligne activé - créneaux approximatifs");
       }
-    } catch (error) {
+    } catch (error: any) {
       clearTimeout(timeoutId);
       console.error('feedback réseau:', error);
       setIsOnline(false);
@@ -206,7 +206,7 @@ export function BookingSystem() {
       clearTimeout(timeoutId);
 
       if (response.ok) {
-        const result = await response.json();
+        await response.json();
         toast.success("Rendez-vous confirmé ! Vous recevrez un email de confirmation.");
         
         // Reset form
@@ -225,7 +225,7 @@ export function BookingSystem() {
         console.error('❌ Booking failed:', errorData);
         toast.error(errorData.error || `erreur serveur (${response.status})`);
       }
-    } catch (error) {
+    } catch (error: any) {
       clearTimeout(timeoutId);
       console.error("❌ Request failed:", error);
       
@@ -335,7 +335,7 @@ export function BookingSystem() {
                   {/* Calendar Grid */}
                   {currentMonthDates.length > 0 ? (
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-                      {currentMonthDates.map((date) => {
+                      {currentMonthDates.map((date: Date) => {
                         const dateStr = formatDateForInput(date);
                         const isSelected = selectedDate === dateStr;
                         const isToday = date.toDateString() === new Date().toDateString();
@@ -411,7 +411,7 @@ export function BookingSystem() {
                           </div>
                         )}
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-                          {availableSlots.map((time) => (
+                          {availableSlots.map((time: string) => (
                             <Button
                               key={time}
                               type="button"
@@ -459,7 +459,7 @@ export function BookingSystem() {
                         <Input
                           required
                           value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, name: e.target.value})}
                           placeholder="Votre nom"
                           className="form-input-modern"
                         />
@@ -474,7 +474,7 @@ export function BookingSystem() {
                           type="email"
                           required
                           value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, email: e.target.value})}
                           placeholder="votre@email.com"
                           className="form-input-modern"
                         />
@@ -489,7 +489,7 @@ export function BookingSystem() {
                           type="tel"
                           required
                           value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, phone: e.target.value})}
                           placeholder="+33 6 12 34 56 78"
                           className="form-input-modern"
                         />
@@ -502,7 +502,7 @@ export function BookingSystem() {
                         </label>
                         <Input
                           value={formData.company}
-                          onChange={(e) => setFormData({...formData, company: e.target.value})}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, company: e.target.value})}
                           placeholder="Nom de votre entreprise"
                           className="form-input-modern"
                         />
@@ -516,7 +516,7 @@ export function BookingSystem() {
                       </label>
                       <Textarea
                         value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFormData({...formData, message: e.target.value})}
                         placeholder="Décrivez brièvement votre projet ou vos besoins..."
                         rows={4}
                         className="form-input-modern"
