@@ -24,7 +24,7 @@ export function Hero() {
   };
 
   return (
-    <section id="about" className="min-h-screen px-6 bg-slate-900 scroll-mt-20 flex items-center">
+    <section id="about" className="px-6 bg-slate-900 scroll-mt-20 min-h-screen flex items-start md:items-center pt-20 pb-20 md:py-20">
       <div className="max-w-6xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text on the left */}
