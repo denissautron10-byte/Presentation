@@ -1,3 +1,4 @@
+
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import profilePhoto from '../assets/imageV2.png';
 
@@ -24,7 +25,7 @@ export function Hero() {
   };
 
   return (
-    <section id="about" className="px-6 bg-slate-900 scroll-mt-20 min-h-screen flex items-start md:items-center pt-20 pb-20 md:py-20">
+    <section id="about" className="px-6 bg-slate-900 scroll-mt-20 min-h-screen flex items-center">
       <div className="max-w-6xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text on the left */}
@@ -33,7 +34,7 @@ export function Hero() {
               <span className="block">À propos</span>
             </h2>
             <p className="text-xl text-gray-300 leading-relaxed">
-              Mon expérience de créateur full stack IA me confère une maîtrise complète du cycle de vie du produit. Je ne me contente pas de designer : je construis. Je définis la direction artistique et l'expérience utilisateur en m'appuyant sur mon expertise visuelle et technique. Mon objectif est de bâtir un modèle de vie indépendante autour de la création.
+              Mon expérience de créateur full stack IA me confère une maîtrise complète du cycle de vie du produit. Je ne me contente pas de designer : je construis. Je définis la direction artistique et l'expérience utilisateur en m'appuyant sur mon expertise visuelle et technique.
             </p>
           </div>
 
