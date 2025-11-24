@@ -13,7 +13,7 @@ const services = [
     title: "L'Application Whalys",
     description: "Whalys est une application d'organisation pour les agences de design. Centralisez, annotez visuellement et transformez chaque feedback en une règle pour Wiki.",
     image: newWhalysImage,
-    tutorialUrl: "whalys.fr",
+    tutorialUrl: "https://www.whalys.fr/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnE2n1F7fZabkxPeEDRf4rePfhVbS9HLEzeXWmw9q8mlR5iIHwqskP-Z3oPhU_aem_cliy9DLn6FjWzFt-5ciFVg",
     demoUrl: "https://docs.google.com/forms/d/e/1FAIpQLSce0Iotxs5zlQhRLLn5bnsLIj5apGbHrpkOGg8uj-9zCXp6Sg/viewform?usp=header",
     buttonText: "Démo"
   },
