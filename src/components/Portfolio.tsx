@@ -13,7 +13,7 @@ const services = [
     title: "L'Application Whalys",
     description: "Whalys est une application d'organisation pour les agences de design. Centralisez, annotez visuellement et transformez chaque feedback en une règle pour Wiki.",
     image: newWhalysImage,
-    tutorialUrl: "https://whalys.vercel.app",
+    tutorialUrl: "https://whalys.fr",
     demoUrl: "https://docs.google.com/forms/d/e/1FAIpQLSce0Iotxs5zlQhRLLn5bnsLIj5apGbHrpkOGg8uj-9zCXp6Sg/viewform?usp=header",
     buttonText: "Démo"
   },
