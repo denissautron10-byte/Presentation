@@ -34,7 +34,7 @@ export function Hero() {
               <span className="block">À propos</span>
             </h2>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              Mon expérience de créateur full stack IA me confère une maîtrise complète du cycle de vie du produit. Je ne me contente pas de designer : je construis. Je définis la direction artistique et l'expérience utilisateur en m'appuyant sur mon expertise visuelle et technique.
+              Mon expérience de créateur full stack IA me confère une maîtrise complète du cycle de vie du produit. Je définis la direction artistique et l'expérience utilisateur en m'appuyant sur mon expertise visuelle et technique.
             </p>
           </div>
 

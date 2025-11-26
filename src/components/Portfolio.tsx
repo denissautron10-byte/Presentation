@@ -3,9 +3,9 @@ import { Button } from "./ui/button";
 import { ExternalLink } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
-import newConceptArtImage from 'figma:asset/4334886f91c9bd88b3a661ee999b4d4cc5f67719.png';
-import digitalProductImage from 'figma:asset/7c3cbb0373bec945b93a24b1ca31bf243446c12c.png';
-import newWhalysImage from 'figma:asset/5ef386c671094d4b166c4eeada614d21da6745da.png';
+import newConceptArtImage from '../assets/4334886f91c9bd88b3a661ee999b4d4cc5f67719.png';
+import digitalProductImage from '../assets/7c3cbb0373bec945b93a24b1ca31bf243446c12c.png';
+import newWhalysImage from '../assets/Luna.png';
 
 const services = [
   {
@@ -64,7 +64,7 @@ export function Portfolio() {
                   alt={service.title}
                   className={`w-full h-full ${
                     service.id === 1 ? 'object-cover object-[90%_65%]' : 
-                    service.id === 2 ? 'object-cover object-[63%_60%] bg-black' : 
+                    service.id === 2 ? 'object-cover object-[80%_80%] bg-black' : 
                     service.id === 3 ? 'object-cover object-center' : 'object-cover'
                   }`}
                 />
