@@ -116,7 +116,7 @@ export function Portfolio() {
                         </Button>
                       </>
                     ) : (
-                      <Button _
+                      <Button
                         size="lg"
                         variant="outline" 
                         className="border-white transition-colors text-lg px-8 py-4 group"
@@ -136,7 +136,7 @@ export function Portfolio() {
               </motion.div>
             </div>
           </div>
-        ))}`
+        ))}
       </div>
     </section>
   );
