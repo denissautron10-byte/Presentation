@@ -1,11 +1,10 @@
-import React from 'react';
 import { Button } from "./ui/button";
 import { ExternalLink } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { motion } from "motion/react";
 import newConceptArtImage from '../assets/4334886f91c9bd88b3a661ee999b4d4cc5f67719.png';
 import digitalProductImage from '../assets/7c3cbb0373bec945b93a24b1ca31bf243446c12c.png';
-import newWhalysImage from '../assets/Luna.png';
+import newWhalysImage from '../assets/LunaV1.png';
 
 const services = [
   {
@@ -117,7 +116,7 @@ export function Portfolio() {
                         </Button>
                       </>
                     ) : (
-                      <Button 
+                      <Button _
                         size="lg"
                         variant="outline" 
                         className="border-white transition-colors text-lg px-8 py-4 group"
@@ -137,7 +136,7 @@ export function Portfolio() {
               </motion.div>
             </div>
           </div>
-        ))}
+        ))}`
       </div>
     </section>
   );
